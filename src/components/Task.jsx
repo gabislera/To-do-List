@@ -1,12 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import InputEdit from './InputEdit'
 
-function InputEdit({ comentario }) {
-  return <div>
-    <input type="text" className='formInput' placeholder={comentario} />
-  </div>
-}
 const Task = ({ comentario, deleteTask, index, editTask }) => {
   const [showEditInput, setShowEditInput] = React.useState(false)
 

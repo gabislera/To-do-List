@@ -22,7 +22,7 @@ const Form = ({ addComentario }) => {
 
       <div className='coments'>
         <form className='form'>
-          <input type="text" value={input} className='formInput' placeholder='Digite algo' onChange={handleChange} />
+          <input className='formInput' type="text" value={input} placeholder='Digite algo' onChange={handleChange} />
           <button onClick={handleClick}>Adicionar</button>
         </form>
 

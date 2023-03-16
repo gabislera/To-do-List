@@ -15,10 +15,6 @@ header {
   margin-top: -27px;
 }
 
-button {
-  height: 54px;
-}
-
 .formInput {
   width: 540px;
   height: 54px;
@@ -30,13 +26,29 @@ button {
   padding-left: 10px;
 }
 
+.formInput.edit {
+  width: 100%;
+  height: 30px;
+}
+
+.editInput {
+  display: flex;
+  margin-bottom: 40px;
+  margin-top: -10px;
+}
+
 button {
+  height: 54px;
   border-radius: 8px;
   background: #1E6F9F;
   color: #F2F2F2;
   font-size: 14px;
   border: none;
   cursor: pointer;
+}
+
+.editButton {
+  height: 30px;
 }
 
 .coments {

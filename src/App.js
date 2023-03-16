@@ -10,10 +10,6 @@ function App() {
     setComentarios((comentarios) => [...comentarios, comentario])
   }
 
-  // useEffect(() => {
-  //   console.log(comentarios.length);
-  // }, [comentarios])
-
   return (
     <div>
       <Form addComentario={addComentario} />
