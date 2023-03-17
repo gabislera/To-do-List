@@ -1,20 +1,20 @@
 import React from 'react'
 
-const InputEdit = ({ comentario }) => {
-  const [comentarioEditado, setComentarioEditado] = React.useState([])
+const InputEdit = ({ task }) => {
+  const [newTask, setNewTask] = React.useState([])
 
   function handleChangeEdit({ target }) {
-    setComentarioEditado(target.value)
+    setNewTask(target.value)
   }
 
   function handleInputEdit() {
-    console.log(comentario, comentarioEditado)
-    setComentarioEditado('')
+    console.log(task, newTask)
+    setNewTask('')
   }
 
   return (
     <div className='editInput'>
-      <input type="text" className='formInput edit' placeholder={'Edite a tarefa'} value={comentarioEditado} onChange={handleChangeEdit} />
+      <input type="text" className='formInput edit' placeholder={'Edite a tarefa'} value={newTask} onChange={handleChangeEdit} />
       <button className='editButton' onClick={handleInputEdit}>Editar</button>
     </div>
   )

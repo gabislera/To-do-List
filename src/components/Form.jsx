@@ -1,15 +1,18 @@
 import React from 'react'
 
-const Form = ({ addComentario }) => {
+const Form = ({ addTasks }) => {
   const [input, setInput] = React.useState('')
+  const [id, setId] = React.useState(0)
 
   function handleChange({ target }) {
     setInput(target.value)
   }
 
-  function handleClick(e) {
+  const handleClick = (e) => {
+    const inputObj = { input, id }
+    setId(id + 1)
     e.preventDefault()
-    addComentario(input)
+    addTasks(inputObj)
     setInput('')
   }
 
@@ -25,7 +28,6 @@ const Form = ({ addComentario }) => {
           <input className='formInput' type="text" value={input} placeholder='Digite algo' onChange={handleChange} />
           <button onClick={handleClick}>Adicionar</button>
         </form>
-
       </div>
     </>
   )
