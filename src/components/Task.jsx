@@ -5,10 +5,15 @@ import InputEdit from './InputEdit'
 
 const Task = ({ task, deleteTask, index, editTask }) => {
   const [showEditInput, setShowEditInput] = React.useState(false)
-  // console.log(task, 'teste')
+  // console.log(task, 'aqui esta o objeto')
 
-  function editTask() {
+  function showEditTask() {
     setShowEditInput((prevState) => !prevState)
+  }
+
+  function editTaskChild(newTask) {
+    editTask(newTask)
+    setShowEditInput(false)
   }
 
   return (
@@ -18,11 +23,11 @@ const Task = ({ task, deleteTask, index, editTask }) => {
           <li><input type="checkbox" />{task.input}</li>
         </div>
         <div className='icons'>
-          <FontAwesomeIcon className='edit-button' onClick={editTask} icon={faPenToSquare} />
+          <FontAwesomeIcon className='edit-button' onClick={showEditTask} icon={faPenToSquare} />
           <FontAwesomeIcon className='delete-button' onClick={() => deleteTask(index)} icon={faTrash} />
         </div>
       </div>
-      {showEditInput && <InputEdit task={task} />}
+      {showEditInput && <InputEdit task={task} editTaskChild={editTaskChild} />}
     </>
   )
 }

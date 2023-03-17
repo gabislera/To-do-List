@@ -1,22 +1,24 @@
 import React from 'react'
 
-const InputEdit = ({ task }) => {
-  const [newTask, setNewTask] = React.useState([])
+const InputEdit = ({ task, editTaskChild }) => {
+  const [newTask, setNewTask] = React.useState('')
 
-  function handleChangeEdit({ target }) {
+  const handleChangeEdit = ({ target }) => {
     setNewTask(target.value)
   }
 
-  function handleInputEdit() {
-    console.log(task, newTask)
+
+  const handleInputEdit = () => {
+    const inputNewObj = { input: newTask, id: task.id }
+    editTaskChild(inputNewObj)
     setNewTask('')
   }
 
   return (
-    <div className='editInput'>
+    <form className='editInput'>
       <input type="text" className='formInput edit' placeholder={'Edite a tarefa'} value={newTask} onChange={handleChangeEdit} />
       <button className='editButton' onClick={handleInputEdit}>Editar</button>
-    </div>
+    </form>
   )
 }
 
