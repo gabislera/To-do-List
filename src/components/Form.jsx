@@ -9,7 +9,7 @@ const Form = ({ addTasks }) => {
   }
 
   const handleClick = (e) => {
-    const inputObj = { input, id }
+    const inputObj = { input, id, checked: false }
     setId(id + 1)
     e.preventDefault()
     addTasks(inputObj)

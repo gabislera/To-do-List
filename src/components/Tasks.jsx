@@ -1,7 +1,11 @@
 import React from 'react'
 import Task from './Task'
 
+const checkedSort = (task) => task.checked ? 1 : -1
+
 const Tasks = ({ tasks, setTasks }) => {
+  const sortedTasks = tasks.sort(checkedSort)
+
   const deleteTask = (task) => {
     const filtro = tasks.filter(({ id }) => id !== task.id)
     setTasks(filtro)
@@ -11,8 +15,21 @@ const Tasks = ({ tasks, setTasks }) => {
     const newTasks = tasks.map((task) => {
       if (task.id === newTask.id)
         return {
-          id: task.id,
+          // id: task.id,
+          ...task,
           input: newTask.input
+        }
+      return task
+    })
+    setTasks(newTasks)
+  }
+
+  const handleChecked = (newTask) => {
+    const newTasks = tasks.map((task) => {
+      if (task.id === newTask.id)
+        return {
+          ...task,
+          checked: !task.checked
         }
       return task
     })
@@ -22,8 +39,8 @@ const Tasks = ({ tasks, setTasks }) => {
   return (
     <div className='coments-lista'>
       <ul>
-        {tasks.map((task, index) =>
-          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} />
+        {sortedTasks.map((task, index) =>
+          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} />
         )}
       </ul>
     </div>

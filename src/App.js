@@ -9,7 +9,6 @@ function App() {
   function addTasks(task) {
     setTasks((prevTasks) => [...prevTasks, task])
   }
-  // console.log(tasks)
 
   return (
     <div>

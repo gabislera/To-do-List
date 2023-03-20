@@ -3,20 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import InputEdit from './InputEdit'
 
-const Task = ({ task, deleteTask, editTask }) => {
+const Task = ({ task, deleteTask, editTask, handleChecked }) => {
   const [showEditInput, setShowEditInput] = React.useState(false)
-  const [isChecked, setIsChecked] = React.useState(false)
 
-  function handleChecked() {
-    setIsChecked(!isChecked)
+  function _handleChecked() {
+    handleChecked(task)
   }
 
-  function deleteTaskIfChecked() {
-    if (!isChecked)
+  function deleteTaskIfNotChecked() {
+    if (!task.checked)
       deleteTask(task)
   }
 
   function showEditTask() {
+    console.log(task.checked)
     setShowEditInput((prevState) => !prevState)
   }
 
@@ -31,14 +31,14 @@ const Task = ({ task, deleteTask, editTask }) => {
         <div>
           <li className='checkbox-input'>
             <label htmlFor="my-checkbox"></label>
-            <input type="checkbox" id='my-checkbox' checked={isChecked} onChange={handleChecked} />
+            <input type="checkbox" id='my-checkbox' checked={task.checked} onChange={_handleChecked} />
             <div className='input-checked'>{task.input}</div>
           </li>
         </div>
         <div className='icons'>
           <input type="date" />
           <FontAwesomeIcon className='edit-button' onClick={showEditTask} icon={faPenToSquare} />
-          <FontAwesomeIcon className='delete-button' onClick={deleteTaskIfChecked} icon={faTrash} />
+          <FontAwesomeIcon className='delete-button' onClick={deleteTaskIfNotChecked} icon={faTrash} />
         </div>
       </div>
       {showEditInput && <InputEdit task={task} editTaskChild={editTaskChild} />}
