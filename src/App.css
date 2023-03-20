@@ -27,14 +27,15 @@ header {
 }
 
 .formInput.edit {
-  width: 100%;
+  width: 80%;
   height: 30px;
+  border-radius: 8px 0 0 8px;
 }
 
 .editInput {
   display: flex;
-  margin-bottom: 40px;
-  margin-top: -10px;
+  margin-bottom: 20px;
+  justify-content: center;
 }
 
 button {
@@ -48,7 +49,8 @@ button {
 }
 
 .editButton {
-  height: 30px;
+  height: 32px;
+  border-radius: 0 8px 8px 0;
 }
 
 .coments {
@@ -89,6 +91,8 @@ button {
 .icons {
   display: flex;
   gap: 10px;
+  justify-content: center;
+  align-items: center;
 }
 
 .delete-button {
@@ -98,3 +102,44 @@ button {
 .edit-button {
   cursor: pointer;
 }
+
+.icons input{
+  background: transparent;
+  border: none;
+}
+
+input[type="date"]::-webkit-datetime-edit {
+  display:none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-image: url(./calendar.svg);
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  margin-right: -3px;
+}
+
+.checkbox-input {
+  display: flex;
+  align-items: center;
+}
+
+input:checked + .input-checked {
+  text-decoration: line-through;
+  opacity: .5;
+}
+
+/* input[type="checkbox"] {
+  display: none;
+}
+
+label[for="my-checkbox"] {
+  display: none;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  border-radius: 34px;
+  cursor: pointer;
+}  */

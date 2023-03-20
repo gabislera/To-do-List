@@ -25,7 +25,7 @@ const Form = ({ addTasks }) => {
 
       <div className='coments'>
         <form className='form'>
-          <input className='formInput' type="text" value={input} placeholder='Digite algo' onChange={handleChange} />
+          <input className='formInput' type="text" required value={input} placeholder='Digite algo' onChange={handleChange} />
           <button onClick={handleClick}>Adicionar</button>
         </form>
       </div>

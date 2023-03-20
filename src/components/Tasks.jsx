@@ -2,13 +2,12 @@ import React from 'react'
 import Task from './Task'
 
 const Tasks = ({ tasks, setTasks }) => {
-  const deleteTask = (index) => {
-    const filtro = tasks.filter(({ id }) => id !== index)
+  const deleteTask = (task) => {
+    const filtro = tasks.filter(({ id }) => id !== task.id)
     setTasks(filtro)
   }
 
   const editTask = (newTask) => {
-    // console.log(task)
     const newTasks = tasks.map((task) => {
       if (task.id === newTask.id)
         return {
@@ -24,7 +23,7 @@ const Tasks = ({ tasks, setTasks }) => {
     <div className='coments-lista'>
       <ul>
         {tasks.map((task, index) =>
-          <Task task={task} key={`${index}`} index={index} deleteTask={deleteTask} editTask={editTask} />
+          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} />
         )}
       </ul>
     </div>
