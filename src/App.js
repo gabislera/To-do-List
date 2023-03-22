@@ -6,7 +6,7 @@ import Tasks from './components/Tasks'
 
 function App() {
   const [tasks, setTasks] = React.useState([])
-  function addTasks(task) {
+  const addTasks = (task) => {
     setTasks((prevTasks) => [...prevTasks, task])
   }
 

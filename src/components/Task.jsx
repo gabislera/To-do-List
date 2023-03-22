@@ -6,21 +6,21 @@ import InputEdit from './InputEdit'
 const Task = ({ task, deleteTask, editTask, handleChecked }) => {
   const [showEditInput, setShowEditInput] = React.useState(false)
 
-  function _handleChecked() {
+  const _handleChecked = () => {
     handleChecked(task)
   }
 
-  function deleteTaskIfNotChecked() {
+  const deleteTaskIfNotChecked = () => {
     if (!task.checked)
       deleteTask(task)
   }
 
-  function showEditTask() {
+  const showEditTask = () => {
     console.log(task.checked)
     setShowEditInput((prevState) => !prevState)
   }
 
-  function editTaskChild(newTask) {
+  const editTaskChild = (newTask) => {
     editTask(newTask)
     setShowEditInput(false)
   }

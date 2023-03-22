@@ -4,7 +4,7 @@ const Form = ({ addTasks }) => {
   const [input, setInput] = React.useState('')
   const [id, setId] = React.useState(0)
 
-  function handleChange({ target }) {
+  const handleChange = ({ target }) => {
     setInput(target.value)
   }
 
