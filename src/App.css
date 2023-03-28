@@ -131,15 +131,3 @@ input:checked + .input-checked {
   opacity: .5;
 }
 
-/* input[type="checkbox"] {
-  display: none;
-}
-
-label[for="my-checkbox"] {
-  display: none;
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  border-radius: 34px;
-  cursor: pointer;
-}  */

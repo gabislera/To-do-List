@@ -15,9 +15,9 @@ const InputEdit = ({ task, editTaskChild }) => {
   }
 
   return (
-    <form className='editInput'>
+    <form className='editInput' onSubmit={handleInputEdit}>
       <input type="text" className='formInput edit' placeholder={'Edite a tarefa'} value={newTask} onChange={handleChangeEdit} />
-      <button className='editButton' onClick={handleInputEdit}>Editar</button>
+      <button className='editButton'>Editar</button>
     </form>
   )
 }

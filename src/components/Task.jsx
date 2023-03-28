@@ -16,7 +16,6 @@ const Task = ({ task, deleteTask, editTask, handleChecked }) => {
   }
 
   const showEditTask = () => {
-    console.log(task.checked)
     setShowEditInput((prevState) => !prevState)
   }
 
@@ -28,12 +27,10 @@ const Task = ({ task, deleteTask, editTask, handleChecked }) => {
   return (
     <>
       <div className='container-div' >
-        <div>
-          <li className='checkbox-input'>
-            <label htmlFor="my-checkbox"></label>
-            <input type="checkbox" id='my-checkbox' checked={task.checked} onChange={_handleChecked} />
-            <div className='input-checked'>{task.input}</div>
-          </li>
+        <div className='checkbox-input'>
+          <label htmlFor="checkbox"></label>
+          <input type="checkbox" id='checkbox' checked={task.checked} onChange={_handleChecked} />
+          <div className='input-checked'>{task.input}</div>
         </div>
         <div className='icons'>
           <input type="date" />

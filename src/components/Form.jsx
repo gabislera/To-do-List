@@ -8,10 +8,10 @@ const Form = ({ addTasks }) => {
     setInput(target.value)
   }
 
-  const handleClick = (e) => {
+  const handleSubmit = (target) => {
     const inputObj = { input, id, checked: false }
     setId(id + 1)
-    e.preventDefault()
+    target.preventDefault()
     addTasks(inputObj)
     setInput('')
   }
@@ -22,11 +22,10 @@ const Form = ({ addTasks }) => {
         <span>Imagem</span>
         <span>Text</span>
       </header>
-
       <div className='coments'>
-        <form className='form'>
-          <input className='formInput' type="text" required value={input} placeholder='Digite algo' onChange={handleChange} />
-          <button onClick={handleClick}>Adicionar</button>
+        <form onSubmit={handleSubmit} className='form'>
+          <input className='formInput' type="text" value={input} placeholder='Digite algo' onChange={handleChange} />
+          <button >Adicionar</button>
         </form>
       </div>
     </>
