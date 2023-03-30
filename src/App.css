@@ -4,15 +4,56 @@
   font-family: 'Poppins', sans-serif;
 }
 
-header {
+.header {
   height: 200px;
   background: #0D0D0D;
+}
+
+.buttonModal {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  margin-top: -27px;
+}
+
+.modal {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: rgba(247, 245, 245, 0.1);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.card {
+  width: 750px;
+  height: 150px;
+  background: #1A1A1A;
+  border-radius: 10px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* z-index: 2; */
+}
+
+.modalClose {
+  width: 100vw;
+  height: 100vh;
+}
+
+.formContainer {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .form {
   display: flex;
   gap: 8px;
-  margin-top: -27px;
 }
 
 .formInput {
@@ -51,13 +92,6 @@ button {
 .editButton {
   height: 32px;
   border-radius: 0 8px 8px 0;
-}
-
-.coments {
-  background: #1A1A1A;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .coments-container{
@@ -118,7 +152,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 16px;
   height: 16px;
   cursor: pointer;
-  margin-right: -3px;
 }
 
 .checkbox-input {
@@ -130,4 +163,3 @@ input:checked + .input-checked {
   text-decoration: line-through;
   opacity: .5;
 }
-

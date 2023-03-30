@@ -1,30 +1,24 @@
-import React from 'react'
+import { useState, useRef, useEffect } from 'react'
 
-const Form = ({ addTasks }) => {
-  const [input, setInput] = React.useState('')
-  const [id, setId] = React.useState(0)
+const Form = ({ addTasks, id }) => {
+  const [input, setInput] = useState('')
 
   const handleChange = ({ target }) => {
     setInput(target.value)
   }
 
-  const handleSubmit = (target) => {
-    const inputObj = { input, id, checked: false }
-    setId(id + 1)
-    target.preventDefault()
+  const handleSubmit = (e) => {
+    const inputObj = { input, id, checked: false, select: '' }
+    e.preventDefault()
     addTasks(inputObj)
     setInput('')
   }
 
   return (
     <>
-      <header>
-        <span>Imagem</span>
-        <span>Text</span>
-      </header>
-      <div className='coments'>
-        <form onSubmit={handleSubmit} className='form'>
-          <input className='formInput' type="text" value={input} placeholder='Digite algo' onChange={handleChange} />
+      <div className='formContainer'>
+        <form className='form' onSubmit={handleSubmit}>
+          <input className='formInput' type="text" required value={input} placeholder='Digite algo' onChange={handleChange} autoFocus />
           <button >Adicionar</button>
         </form>
       </div>

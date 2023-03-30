@@ -1,18 +1,34 @@
-import React from 'react'
+import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faPenToSquare, faStar } from '@fortawesome/free-solid-svg-icons'
 import InputEdit from './InputEdit'
+import Dropdown from './Dropdown'
 
-const Task = ({ task, deleteTask, editTask, handleChecked }) => {
-  const [showEditInput, setShowEditInput] = React.useState(false)
+const STAR_COLOR = {
+  'alta': '#FADC09',
+  'media': '#A9AAAE',
+  'baixa': '#A67D01'
+}
+
+const Task = ({ task, deleteTask, editTask, handleChecked, tasks, handleSelected }) => {
+  const [showEditInput, setShowEditInput] = useState(false)
+  const [showDropdown, setShowdropdown] = useState(false)
 
   const _handleChecked = () => {
     handleChecked(task)
   }
 
+  const _handleSelected = (newTask) => {
+    handleSelected(newTask)
+  }
+
   const deleteTaskIfNotChecked = () => {
     if (!task.checked)
       deleteTask(task)
+  }
+
+  const handleShowDropdown = () => {
+    setShowdropdown((prevState) => !prevState)
   }
 
   const showEditTask = () => {
@@ -24,6 +40,8 @@ const Task = ({ task, deleteTask, editTask, handleChecked }) => {
     setShowEditInput(false)
   }
 
+  const color = STAR_COLOR[task.select]
+
   return (
     <>
       <div className='container-div' >
@@ -33,6 +51,9 @@ const Task = ({ task, deleteTask, editTask, handleChecked }) => {
           <div className='input-checked'>{task.input}</div>
         </div>
         <div className='icons'>
+          <FontAwesomeIcon onClick={handleShowDropdown} icon={faStar} color={color} />
+          {showDropdown && <Dropdown setShowdropdown={setShowdropdown} handleSelected={_handleSelected} task={task} />}
+
           <input type="date" />
           <FontAwesomeIcon className='edit-button' onClick={showEditTask} icon={faPenToSquare} />
           <FontAwesomeIcon className='delete-button' onClick={deleteTaskIfNotChecked} icon={faTrash} />
