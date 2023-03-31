@@ -16,7 +16,14 @@ const checkedSelect = (task) => {
 // }
 
 const Tasks = ({ tasks, setTasks }) => {
-  const sortedTasks = tasks.sort(checkedSort).sort(checkedSelect)
+  const sortedTasks = tasks.sort(checkedSort)
+
+  // const sortedChecked = tasks.filter((task) => task.checked)
+  const sortedUnchecked = tasks.filter((task) => task.checked === false)
+
+  // const testeUnchecked = sortedChecked.sort(checkedSelect)
+  const testeChecked = sortedUnchecked.sort(checkedSelect)
+  console.log(testeChecked)
 
   const deleteTask = (task) => {
     const filtro = tasks.filter(({ id }) => id !== task.id)
@@ -35,9 +42,9 @@ const Tasks = ({ tasks, setTasks }) => {
     setTasks(newTasks)
   }
 
-  useEffect(() => {
-    console.log(tasks)
-  }, [tasks])
+  // useEffect(() => {
+  //   console.log(tasks)
+  // }, [tasks])
 
   const handleChecked = (newTask) => {
     const newTasks = tasks.map((task) => {
@@ -61,7 +68,6 @@ const Tasks = ({ tasks, setTasks }) => {
       return task
     })
     setTasks(newTasks)
-    console.log(newTasks)
   }
 
   return (

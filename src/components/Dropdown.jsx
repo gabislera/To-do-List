@@ -5,15 +5,10 @@ const Dropdown = ({ setShowdropdown, handleSelected, task }) => {
 
   const handleChangeDropDown = ({ target }) => {
     const obj = { ...task, select: target.value }
-    // console.log(obj)
     setDropDownValue(target.value)
     handleSelected(obj)
     setShowdropdown(false)
   }
-
-  // useEffect(() => {
-  //   console.log(dropDownValue)
-  // }, [handleChangeDropDown])
 
   return (
     <div className='dropDown-Container'>

@@ -159,6 +159,10 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   align-items: center;
 }
 
+.input-checked {
+  text-transform: capitalize;
+}
+
 input:checked + .input-checked {
   text-decoration: line-through;
   opacity: .5;
