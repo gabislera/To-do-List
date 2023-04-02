@@ -3,32 +3,47 @@ import Task from './Task'
 
 const checkedSort = (task) => task.checked ? 1 : -1
 
-const checkedSelect = (task) => {
-  if (task.select === 'baixa') return 1
-  if (task.select === 'media') return 0
-  return -1
-}
-
-// const STAR_COLOR = {
-//   'alta': 0,
-//   'media': 1,
-//   'baixa': 2,
+// const PRIORITY = {
+//   'alta': -1,
+//   'media': 0,
+//   'baixa': 1,
+//   '': 2
 // }
 
+const sortPriority = (task) => {
+  console.log(task.select)
+  if (task.select === 'media') return 1
+  if (task.select === 'alta') return -1
+  return 0
+}
+
+const hoje = new Date()
+
 const Tasks = ({ tasks, setTasks }) => {
-  const sortedTasks = tasks.sort(checkedSort)
+  const taskSToday = tasks.filter((task) =>
+    ((task.date.getDay() === hoje.getDay()) && (task.date.getMonth() === hoje.getMonth()) && (task.date.getYear() === hoje.getYear()))
+  )
 
-  // const sortedChecked = tasks.filter((task) => task.checked)
-  const sortedUnchecked = tasks.filter((task) => task.checked === false)
+  const sortedChecked = taskSToday.filter((task) => task.checked).sort(checkedSort)
+  const sortedUnchecked = taskSToday.filter((task) => !task.checked).sort(checkedSort)
 
-  // const testeUnchecked = sortedChecked.sort(checkedSelect)
-  const testeChecked = sortedUnchecked.sort(checkedSelect)
-  console.log(testeChecked)
+  const sortedCheckedPriority = sortedChecked.sort(sortPriority)
+  const sortedUncheckedPriority = sortedUnchecked.sort(sortPriority)
+
+  const mappedList = sortedCheckedPriority.map((task) => sortPriority(task))
+
+
+  const joinedTasks = [...sortedUncheckedPriority, ...sortedCheckedPriority]
 
   const deleteTask = (task) => {
     const filtro = tasks.filter(({ id }) => id !== task.id)
     setTasks(filtro)
   }
+
+  useEffect(() => {
+    console.log(mappedList)
+  }, [mappedList])
+
 
   const editTask = (newTask) => {
     const newTasks = tasks.map((task) => {
@@ -41,10 +56,6 @@ const Tasks = ({ tasks, setTasks }) => {
     })
     setTasks(newTasks)
   }
-
-  // useEffect(() => {
-  //   console.log(tasks)
-  // }, [tasks])
 
   const handleChecked = (newTask) => {
     const newTasks = tasks.map((task) => {
@@ -73,7 +84,7 @@ const Tasks = ({ tasks, setTasks }) => {
   return (
     <div className='coments-lista'>
       <ul>
-        {sortedTasks.map((task, index) =>
+        {joinedTasks.map((task, index) =>
           <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
         )}
       </ul>

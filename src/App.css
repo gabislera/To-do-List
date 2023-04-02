@@ -54,6 +54,7 @@
 .form {
   display: flex;
   gap: 8px;
+  /* position: relative; */
 }
 
 .formInput {
@@ -140,6 +141,19 @@ button {
 .icons input{
   background: transparent;
   border: none;
+}
+
+.formDatePicker{
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 66px;
+  left: 570px;
+  }
+
+.form input[type="date"]::-webkit-calendar-picker-indicator {
+  width: 20px;
+  height: 20px;
 }
 
 input[type="date"]::-webkit-datetime-edit {
