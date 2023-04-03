@@ -1,48 +1,48 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
 import Task from './Task'
+import { checkedSort, sortPriority } from '../utils'
 
-const checkedSort = (task) => task.checked ? 1 : -1
-
-// const PRIORITY = {
-//   'alta': -1,
-//   'media': 0,
-//   'baixa': 1,
-//   '': 2
-// }
-
-const sortPriority = (task) => {
-  if (task.select === 'media') return 1
-  if (task.select === 'alta') return -1
-  return 0
+const filterByDate = (task, dateCompare) => {
+  const currentDate = new Date(task.date)
+  return ((currentDate.getDate() === dateCompare.getDate()) && (currentDate.getMonth() === dateCompare.getMonth()) && (currentDate.getYear() === dateCompare.getYear()))
 }
 
-const hoje = new Date()
-
-const Tasks = ({ tasks, setTasks }) => {
-  const taskSToday = tasks.filter((task) =>
-    ((task.date.getDay() === hoje.getDay()) && (task.date.getMonth() === hoje.getMonth()) && (task.date.getYear() === hoje.getYear()))
-  )
-
-  const sortedChecked = taskSToday.filter((task) => task.checked).sort(checkedSort)
-  const sortedUnchecked = taskSToday.filter((task) => !task.checked).sort(checkedSort)
+const formatList = (taskList) => {
+  const sortedChecked = taskList.filter((task) => task.checked).sort(checkedSort)
+  const sortedUnchecked = taskList.filter((task) => !task.checked).sort(checkedSort)
 
   const sortedCheckedPriority = sortedChecked.sort(sortPriority)
   const sortedUncheckedPriority = sortedUnchecked.sort(sortPriority)
 
-  // const mappedList = sortedCheckedPriority.map((task) => sortPriority(task))
+  return [...sortedUncheckedPriority, ...sortedCheckedPriority]
+}
 
+const Tasks = ({ tasks, setTasks }) => {
+  const [dateCompare, setDateCompare] = useState(new Date())
+  const [showAllActive, setShowAllActive] = useState(true)
+  // const [dayVerifyer, setDayVerifyer] = useState(tasks)
 
-  const joinedTasks = [...sortedUncheckedPriority, ...sortedCheckedPriority]
+  const tasksToday = tasks.filter((task) => filterByDate(task, dateCompare))
+  // const tasksToday = tasks.filter(filterByDate)
+
+  const joinedTasks = formatList(tasksToday)
+  const joinedTasksAll = formatList(tasks)
+
+  const handleShowAll = () => {
+    setShowAllActive((prevState) => !prevState)
+  }
+
+  // useEffect(() => {
+  //   console.log(date);
+  // }, [date])
+
 
   const deleteTask = (task) => {
     const filtro = tasks.filter(({ id }) => id !== task.id)
     setTasks(filtro)
   }
-
-  // useEffect(() => {
-  //   console.log(mappedList)
-  // }, [mappedList])
-
 
   const editTask = (newTask) => {
     const newTasks = tasks.map((task) => {
@@ -80,13 +80,32 @@ const Tasks = ({ tasks, setTasks }) => {
     setTasks(newTasks)
   }
 
+  const handleLeft = () => {
+    // dateCompare.setDate(dateCompare.getDate() - 1)
+    setDateCompare((prevState) => prevState.setDate(prevState.getDate() - 1))
+    console.log(dateCompare)
+  }
+
+  const handleRight = () => {
+    // dateCompare.setDate(dateCompare.getDate() + 1)
+    setDateCompare((prevState) => prevState.setDate(prevState.getDate() + 1))
+    console.log(dateCompare)
+  }
+
   return (
     <div className='coments-lista'>
       <ul>
-        {joinedTasks.map((task, index) =>
+        {showAllActive ? joinedTasks.map((task, index) =>
+          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
+        ) : joinedTasksAll.map((task, index) =>
           <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
         )}
       </ul>
+      <div className='showAll'>
+        <button className='leftButton' onClick={handleLeft}><FontAwesomeIcon icon={faCaretUp} /></button>
+        <button onClick={handleShowAll}>{showAllActive ? 'Todas' : 'Hoje'}</button>
+        <button className='rightButton' onClick={handleRight}><FontAwesomeIcon icon={faCaretUp} /></button>
+      </div>
     </div>
   )
 }

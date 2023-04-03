@@ -11,12 +11,14 @@ const Form = ({ addTasks, id }) => {
   }
 
   const handleSubmit = (e) => {
+    const date = dateValue ?? todayDate
     const inputObj = {
       input,
       id,
       checked: false,
       select: '',
-      date: (dateValue === undefined) ? todayDate : dateValue
+      date: date
+      // (dateValue === undefined) ? todayDate : dateValue
     }
     e.preventDefault()
     addTasks(inputObj)
@@ -25,6 +27,8 @@ const Form = ({ addTasks, id }) => {
 
   const handleDate = ({ target }) => {
     const date = new Date(target.value)
+    date.setHours(date.getHours() + 3)
+    console.log(date);
     setDateValue(date)
   }
 

@@ -233,9 +233,6 @@ input:checked + .input-checked {
 }
 
 .noTaskContainer {
-  /* height: 100px; */
-  /* width: 640px; */
-  /* background-color: #333333; */
   border-radius: 10px;
   margin: 0 auto;
 }
@@ -256,4 +253,31 @@ input:checked + .input-checked {
   padding-top: 20px;
   font-family: 'Inter', sans-serif;
   color: #808080;
+}
+
+.showAll {
+  width: 640px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 8px;
+  }
+
+.showAll button {
+  height: 20px;
+  font-size: .8rem;
+  background-color: #333333;
+
+}
+
+.leftButton {
+  transform: rotate(-90deg);
+  background-color: #333333;
+
+}
+
+.rightButton {
+  transform: rotate(90deg);
+  background-color: #333333;
+
 }

@@ -21,7 +21,7 @@ function App() {
   }
 
   return (
-    <div >
+    <div className='container'>
       <div className='header' />
       <Modal id={id} onCloseModal={handleModal} showModal={showModal} addTasks={addTasks} />
       <button onClick={handleModal} className='buttonModal'>Nova tarefa</button>
