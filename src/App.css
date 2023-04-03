@@ -1,8 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-* {
-  font-family: 'Poppins', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;700&display=swap');
 
 .header {
   height: 200px;
@@ -14,6 +10,8 @@
   align-items: center;
   margin: auto;
   margin-top: -27px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
 }
 
 .modal {
@@ -102,7 +100,7 @@ button {
 }
 
 .coments-lista {
-  margin-top: 100px;
+  margin-top: 20px;
 }
 
 .container-div {
@@ -175,9 +173,87 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 .input-checked {
   text-transform: capitalize;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+
 }
 
 input:checked + .input-checked {
   text-decoration: line-through;
   opacity: .5;
+}
+
+.tasksInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: .9rem;
+}
+
+.created  {
+  color: #4EA8DE;
+  display: flex;
+  align-items: center;
+
+}
+
+.createdValue{
+  display: flex;
+  height: 24px;
+  width: 24px;
+  background: #333333;
+  border-radius: 999px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.concluded {
+  color: #8284FA;
+  display: flex;
+  align-items: center;
+}
+
+.concludedValue {
+  display: flex;
+  height: 24px;
+  width: 24px;
+  background: #333333;
+  border-radius: 999px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.noTaskContainer {
+  /* height: 100px; */
+  /* width: 640px; */
+  /* background-color: #333333; */
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.line {
+  width: 640px;
+  height: 1px;
+  background-color: #333333;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.noTaskContainer p {
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 20px;
+  font-family: 'Inter', sans-serif;
+  color: #808080;
 }

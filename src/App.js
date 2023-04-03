@@ -3,6 +3,8 @@ import './App.css'
 import './components/reset.css'
 import Tasks from './components/Tasks'
 import Modal from './components/Modal';
+import Info from './components/Info';
+import NoTasks from './components/NoTasks';
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -22,9 +24,10 @@ function App() {
     <div >
       <div className='header' />
       <Modal id={id} onCloseModal={handleModal} showModal={showModal} addTasks={addTasks} />
-      <button onClick={handleModal} className='buttonModal'>Clique para adicionar uma tarefa</button>
+      <button onClick={handleModal} className='buttonModal'>Nova tarefa</button>
+      <Info tasks={tasks} />
       <div className='coments-container'>
-        <Tasks tasks={tasks} setTasks={setTasks} />
+        {(tasks.length === 0) ? <NoTasks /> : <Tasks tasks={tasks} setTasks={setTasks} />}
       </div>
     </div>
   );

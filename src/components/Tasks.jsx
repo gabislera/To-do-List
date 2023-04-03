@@ -11,7 +11,6 @@ const checkedSort = (task) => task.checked ? 1 : -1
 // }
 
 const sortPriority = (task) => {
-  console.log(task.select)
   if (task.select === 'media') return 1
   if (task.select === 'alta') return -1
   return 0
@@ -30,7 +29,7 @@ const Tasks = ({ tasks, setTasks }) => {
   const sortedCheckedPriority = sortedChecked.sort(sortPriority)
   const sortedUncheckedPriority = sortedUnchecked.sort(sortPriority)
 
-  const mappedList = sortedCheckedPriority.map((task) => sortPriority(task))
+  // const mappedList = sortedCheckedPriority.map((task) => sortPriority(task))
 
 
   const joinedTasks = [...sortedUncheckedPriority, ...sortedCheckedPriority]
@@ -40,9 +39,9 @@ const Tasks = ({ tasks, setTasks }) => {
     setTasks(filtro)
   }
 
-  useEffect(() => {
-    console.log(mappedList)
-  }, [mappedList])
+  // useEffect(() => {
+  //   console.log(mappedList)
+  // }, [mappedList])
 
 
   const editTask = (newTask) => {
