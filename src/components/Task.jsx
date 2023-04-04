@@ -57,7 +57,6 @@ const Task = ({ task, deleteTask, editTask, handleChecked, tasks, handleSelected
           <input type="date" />
           <FontAwesomeIcon className='edit-button' onClick={showEditTask} icon={faPenToSquare} />
           <FontAwesomeIcon className='delete-button' onClick={deleteTaskIfNotChecked} icon={faTrash} />
-
         </div>
       </div>
       {showEditInput && <InputEdit task={task} editTaskChild={editTaskChild} />}

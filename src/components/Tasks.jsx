@@ -34,11 +34,6 @@ const Tasks = ({ tasks, setTasks }) => {
     setShowAllActive((prevState) => !prevState)
   }
 
-  // useEffect(() => {
-  //   console.log(date);
-  // }, [date])
-
-
   const deleteTask = (task) => {
     const filtro = tasks.filter(({ id }) => id !== task.id)
     setTasks(filtro)
@@ -81,16 +76,16 @@ const Tasks = ({ tasks, setTasks }) => {
   }
 
   const handleLeft = () => {
-    // dateCompare.setDate(dateCompare.getDate() - 1)
-    setDateCompare((prevState) => prevState.setDate(prevState.getDate() - 1))
-    console.log(dateCompare)
+    dateCompare.setDate(dateCompare.getDate() - 1)
+    setDateCompare(new Date(dateCompare))
   }
 
   const handleRight = () => {
-    // dateCompare.setDate(dateCompare.getDate() + 1)
-    setDateCompare((prevState) => prevState.setDate(prevState.getDate() + 1))
-    console.log(dateCompare)
+    dateCompare.setDate(dateCompare.getDate() + 1)
+    setDateCompare(new Date(dateCompare))
   }
+
+  const showDate = `0${dateCompare.getDate()}/0${dateCompare.getMonth() + 1}`
 
   return (
     <div className='coments-lista'>
@@ -101,10 +96,14 @@ const Tasks = ({ tasks, setTasks }) => {
           <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
         )}
       </ul>
-      <div className='showAll'>
-        <button className='leftButton' onClick={handleLeft}><FontAwesomeIcon icon={faCaretUp} /></button>
-        <button onClick={handleShowAll}>{showAllActive ? 'Todas' : 'Hoje'}</button>
-        <button className='rightButton' onClick={handleRight}><FontAwesomeIcon icon={faCaretUp} /></button>
+      <div className='daySelector'>
+        <div className='showDate'>{showDate}</div>
+        <div className='daySelector-buttons'>
+          <button className='leftButton' onClick={handleLeft}><FontAwesomeIcon icon={faCaretUp} /></button>
+          <button onClick={handleShowAll}>{showAllActive ? 'Todas' : 'Hoje'}</button>
+          <button className='rightButton' onClick={handleRight}><FontAwesomeIcon icon={faCaretUp} /></button>
+        </div>
+        <div style={{ color: '#1A1A1A' }}>{showDate}</div>
       </div>
     </div>
   )

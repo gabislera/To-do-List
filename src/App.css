@@ -8,6 +8,7 @@
 .buttonModal {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: auto;
   margin-top: -27px;
   font-family: 'Inter', sans-serif;
@@ -52,7 +53,6 @@
 .form {
   display: flex;
   gap: 8px;
-  /* position: relative; */
 }
 
 .formInput {
@@ -255,19 +255,34 @@ input:checked + .input-checked {
   color: #808080;
 }
 
-.showAll {
+.daySelector {
   width: 640px;
   display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  gap: 8px;
-  }
+  align-items: center;
+  justify-content: center; 
+  gap: 220px; 
+}
 
-.showAll button {
+.showDate {
+  color: white;
+  font-size: 1rem;
+  font-weight: 100;
+}
+
+.teste {
+ color: #333333;
+}
+
+.daySelector-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.daySelector button {
   height: 20px;
   font-size: .8rem;
   background-color: #333333;
-
 }
 
 .leftButton {
