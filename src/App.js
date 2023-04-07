@@ -27,7 +27,7 @@ function App() {
       <button onClick={handleModal} className='buttonModal'>Nova tarefa</button>
       <Info tasks={tasks} />
       <div className='coments-container'>
-        {(tasks.length === 0) ? <NoTasks /> : <Tasks tasks={tasks} setTasks={setTasks} />}
+        {(tasks.length === 0) ? <NoTasks text={'Você ainda não possui tarefas criadas'} /> : <Tasks tasks={tasks} setTasks={setTasks} />}
       </div>
     </div>
   );

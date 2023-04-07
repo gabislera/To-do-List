@@ -1,10 +1,10 @@
 import React from 'react'
 
-const NoTasks = () => {
+const NoTasks = ({ text }) => {
   return (
     <div className='noTaskContainer'>
       <span className='line'></span>
-      <p>Você ainda não possui tarefas criadas</p>
+      <p>{text}</p>
     </div>
   )
 }

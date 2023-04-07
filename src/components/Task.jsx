@@ -10,7 +10,7 @@ const STAR_COLOR = {
   'baixa': '#A67D01'
 }
 
-const Task = ({ task, deleteTask, editTask, handleChecked, tasks, handleSelected }) => {
+const Task = ({ task, deleteTask, editTask, handleChecked, handleSelected }) => {
   const [showEditInput, setShowEditInput] = useState(false)
   const [showDropdown, setShowdropdown] = useState(false)
 

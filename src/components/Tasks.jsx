@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Task from './Task'
 import { checkedSort, sortPriority } from '../utils'
 import DaySelect from './DaySelect'
+import NoTasks from './NoTasks'
 
 const filterByDate = (task, dateCompare) => {
   const currentDate = new Date(task.date)
@@ -60,6 +61,9 @@ const Tasks = ({ tasks, setTasks }) => {
       return task
     })
     setTasks(newTasks)
+    // const teste = filterByDate(newTask, dateCompare)
+    // console.log(teste)
+
   }
 
   const handleSelected = (newTask) => {
@@ -84,16 +88,26 @@ const Tasks = ({ tasks, setTasks }) => {
     setDateCompare(new Date(dateCompare))
   }
 
-  const showDate = `0${dateCompare.getDate()}/0${dateCompare.getMonth() + 1}`
+  const showDay = dateCompare.getDate()
+  const showMonth = dateCompare.getMonth()
+
+  const showDate = `${('00' + showDay).slice(-2)}/${('00' + showMonth).slice(-2)}`
 
   return (
     <div className='coments-lista'>
       <ul>
-        {showAllActive ? joinedTasks.map((task, index) =>
-          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
-        ) : joinedTasksAll.map((task, index) =>
-          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
-        )}
+        {showAllActive && joinedTasks.length ?
+          joinedTasks.map((task, index) =>
+            <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
+          ) :
+          <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />}
+
+        {/* {!showAllActive && joinedTasks.length ?
+          joinedTasksAll.map((task, index) =>
+            <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
+          ) :
+          <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />} */}
+
       </ul>
       <DaySelect showDate={showDate} handleLeft={handleLeft} handleRight={handleRight} showAllActive={showAllActive} handleShowAll={handleShowAll} />
     </div>
