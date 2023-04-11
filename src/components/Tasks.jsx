@@ -35,8 +35,10 @@ const Tasks = ({ tasks, setTasks }) => {
   }
 
   const deleteTask = (task) => {
+    const data = new Date()
     const filtro = tasks.filter(({ id }) => id !== task.id)
-    setTasks(filtro)
+    if (task.date.getDate() < data.getDate()) setTasks(tasks)
+    else setTasks(filtro)
   }
 
   const editTask = (newTask) => {
@@ -97,14 +99,30 @@ const Tasks = ({ tasks, setTasks }) => {
     if (showTodayTask) {
       if (joinedTasks.length) {
         return joinedTasks.map((task, index) =>
-          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
+          <Task
+            task={task}
+            key={`${task.id}`}
+            index={index}
+            deleteTask={deleteTask}
+            editTask={editTask}
+            handleChecked={handleChecked}
+            tasks={tasks}
+            handleSelected={handleSelected} />
         )
       }
       return <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />
     } else {
       if (joinedTasksAll.length) {
         return joinedTasksAll.map((task, index) =>
-          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
+          <Task
+            task={task}
+            key={`${task.id}`}
+            index={index}
+            deleteTask={deleteTask}
+            editTask={editTask}
+            handleChecked={handleChecked}
+            tasks={tasks}
+            handleSelected={handleSelected} />
         )
       }
       return <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />
@@ -116,7 +134,12 @@ const Tasks = ({ tasks, setTasks }) => {
       <ul>
         {showTasks()}
       </ul>
-      <DaySelect showDate={showDate} handleLeft={handleLeft} handleRight={handleRight} showAllActive={showTodayTask} handleShowAll={handleShowAll} />
+      <DaySelect
+        showDate={showDate}
+        handleLeft={handleLeft}
+        handleRight={handleRight}
+        showAllActive={showTodayTask}
+        handleShowAll={handleShowAll} />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPenToSquare, faStar } from '@fortawesome/free-solid-svg-icons'
 import InputEdit from './InputEdit'
@@ -13,6 +13,7 @@ const STAR_COLOR = {
 const Task = ({ task, deleteTask, editTask, handleChecked, handleSelected }) => {
   const [showEditInput, setShowEditInput] = useState(false)
   const [showDropdown, setShowdropdown] = useState(false)
+  const [disabled, setDisabled] = useState('')
 
   const _handleChecked = () => {
     handleChecked(task)
@@ -42,6 +43,12 @@ const Task = ({ task, deleteTask, editTask, handleChecked, handleSelected }) => 
 
   const color = STAR_COLOR[task.select]
 
+  useEffect(() => {
+    const data = new Date()
+    if (task.date.getDate() < data.getDate()) setDisabled('disabled')
+    else setDisabled('')
+  }, [task])
+
   return (
     <>
       <div className='container-div' >
@@ -51,11 +58,11 @@ const Task = ({ task, deleteTask, editTask, handleChecked, handleSelected }) => 
           <div className='input-checked'>{task.input}</div>
         </div>
         <div className='icons'>
-          <FontAwesomeIcon onClick={handleShowDropdown} icon={faStar} color={color} />
+          <FontAwesomeIcon className='priority-button' onClick={handleShowDropdown} icon={faStar} color={color} />
           {showDropdown && <Dropdown setShowdropdown={setShowdropdown} handleSelected={_handleSelected} task={task} />}
 
           <input type="date" />
-          <FontAwesomeIcon className='edit-button' onClick={showEditTask} icon={faPenToSquare} />
+          <FontAwesomeIcon className={`edit-button ${disabled}`} onClick={showEditTask} icon={faPenToSquare} />
           <FontAwesomeIcon className='delete-button' onClick={deleteTaskIfNotChecked} icon={faTrash} />
         </div>
       </div>

@@ -93,6 +93,14 @@ button {
   border-radius: 0 8px 8px 0;
 }
 
+.edit-button.disabled {
+  display: none;
+}
+
+.priority-button {
+  cursor: pointer;
+}
+
 .coments-container{
   display: flex;
   flex-direction: column;
