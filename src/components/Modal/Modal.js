@@ -1,10 +1,17 @@
-import React from 'react'
+import { useEffect } from 'react'
 import Form from '../Form/Form'
 import './Modal.css'
 
 const Modal = ({ addTasks, showModal, onCloseModal, id }) => {
-  if (!showModal) return <></>
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onCloseModal()
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [onCloseModal])
 
+  if (!showModal) return <></>
   return (
     <div className="modal">
       <div className="card">

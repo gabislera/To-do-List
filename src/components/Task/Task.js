@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPenToSquare, faStar } from '@fortawesome/free-solid-svg-icons'
 import InputEdit from '../InputEdit/InputEdit'
 import Dropdown from '../Dropdown/Dropdown'
+import DeleteModal from '../DeleteModal/DeleteModal'
 import './Task.css'
 
 const STAR_COLOR = {
@@ -15,6 +16,7 @@ const Task = ({ task, deleteTask, editTask, handleChecked, handleSelected }) => 
   const [showEditInput, setShowEditInput] = useState(false)
   const [showDropdown, setShowdropdown] = useState(false)
   const [disabled, setDisabled] = useState('')
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
 
   const _handleChecked = () => {
     handleChecked(task)
@@ -22,6 +24,10 @@ const Task = ({ task, deleteTask, editTask, handleChecked, handleSelected }) => 
 
   const _handleSelected = (newTask) => {
     handleSelected(newTask)
+  }
+
+  const handleDeleteModal = () => {
+    setShowDeleteModal(((prevState) => !prevState))
   }
 
   const deleteTaskIfNotChecked = () => {
@@ -64,7 +70,9 @@ const Task = ({ task, deleteTask, editTask, handleChecked, handleSelected }) => 
 
           <input type="date" />
           <FontAwesomeIcon className={`edit-button ${disabled}`} onClick={showEditTask} icon={faPenToSquare} />
-          <FontAwesomeIcon className='delete-button' onClick={deleteTaskIfNotChecked} icon={faTrash} />
+          <FontAwesomeIcon className='delete-button' onClick={handleDeleteModal} icon={faTrash} />
+          {showDeleteModal && <DeleteModal handleDeleteModal={handleDeleteModal} deleteTaskIfNotChecked={deleteTaskIfNotChecked} showDeleteModal={showDeleteModal} />}
+
         </div>
       </div>
       {showEditInput && <InputEdit task={task} editTaskChild={editTaskChild} />}
