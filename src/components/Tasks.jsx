@@ -21,7 +21,7 @@ const formatList = (taskList) => {
 
 const Tasks = ({ tasks, setTasks }) => {
   const [dateCompare, setDateCompare] = useState(new Date())
-  const [showAllActive, setShowAllActive] = useState(true)
+  const [showTodayTask, setShowTodayTask] = useState(true)
   // const [dayVerifyer, setDayVerifyer] = useState(tasks)
 
   const tasksToday = tasks.filter((task) => filterByDate(task, dateCompare))
@@ -31,7 +31,7 @@ const Tasks = ({ tasks, setTasks }) => {
   const joinedTasksAll = formatList(tasks)
 
   const handleShowAll = () => {
-    setShowAllActive((prevState) => !prevState)
+    setShowTodayTask((prevState) => !prevState)
   }
 
   const deleteTask = (task) => {
@@ -93,23 +93,30 @@ const Tasks = ({ tasks, setTasks }) => {
 
   const showDate = `${('00' + showDay).slice(-2)}/${('00' + showMonth).slice(-2)}`
 
+  const showTasks = () => {
+    if (showTodayTask) {
+      if (joinedTasks.length) {
+        return joinedTasks.map((task, index) =>
+          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
+        )
+      }
+      return <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />
+    } else {
+      if (joinedTasksAll.length) {
+        return joinedTasksAll.map((task, index) =>
+          <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
+        )
+      }
+      return <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />
+    }
+  }
+
   return (
     <div className='coments-lista'>
       <ul>
-        {showAllActive && joinedTasks.length ?
-          joinedTasks.map((task, index) =>
-            <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
-          ) :
-          <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />}
-
-        {/* {!showAllActive && joinedTasks.length ?
-          joinedTasksAll.map((task, index) =>
-            <Task task={task} key={`${task.id}`} index={index} deleteTask={deleteTask} editTask={editTask} handleChecked={handleChecked} tasks={tasks} handleSelected={handleSelected} />
-          ) :
-          <NoTasks text={'Nenhuma tarefa para o dia de hoje'} />} */}
-
+        {showTasks()}
       </ul>
-      <DaySelect showDate={showDate} handleLeft={handleLeft} handleRight={handleRight} showAllActive={showAllActive} handleShowAll={handleShowAll} />
+      <DaySelect showDate={showDate} handleLeft={handleLeft} handleRight={handleRight} showAllActive={showTodayTask} handleShowAll={handleShowAll} />
     </div>
   )
 }
