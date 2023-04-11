@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons'
+import './DaySelect.css'
 
 const DaySelect = ({ showDate, handleLeft, handleRight, showAllActive, handleShowAll }) => {
   return (

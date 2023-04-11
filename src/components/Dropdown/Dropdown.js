@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+
 
 const Dropdown = ({ setShowdropdown, handleSelected, task }) => {
   const [dropDownValue, setDropDownValue] = useState('')
@@ -11,8 +12,8 @@ const Dropdown = ({ setShowdropdown, handleSelected, task }) => {
   }
 
   return (
-    <div className='dropDown-Container'>
-      <div className='dropDown-Select'>
+    <div>
+      <div>
         <select value={dropDownValue} onChange={handleChangeDropDown}>
           <option disabled value="">Selecione a prioridade</option>
           <option value="baixa">baixa</option>

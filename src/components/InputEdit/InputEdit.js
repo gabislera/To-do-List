@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './InputEdit.css'
 
 const InputEdit = ({ task, editTaskChild }) => {
   const [newTask, setNewTask] = useState('')

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import './Info.css'
 
 const Info = ({ tasks }) => {
   const concluidas = tasks.filter((task) => task.checked)

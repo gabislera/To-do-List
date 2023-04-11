@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash, faPenToSquare, faStar } from '@fortawesome/free-solid-svg-icons'
-import InputEdit from './InputEdit'
-import Dropdown from './Dropdown'
+import InputEdit from '../InputEdit/InputEdit'
+import Dropdown from '../Dropdown/Dropdown'
+import './Task.css'
 
 const STAR_COLOR = {
   'alta': '#FADC09',

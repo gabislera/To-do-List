@@ -1,4 +1,5 @@
 import React from 'react'
+import './NoTask.css'
 
 const NoTasks = ({ text }) => {
   return (

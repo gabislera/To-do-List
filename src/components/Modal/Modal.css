@@ -1,0 +1,27 @@
+.modal {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: rgba(247, 245, 245, 0.1);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.card {
+  width: 750px;
+  height: 150px;
+  background: #1A1A1A;
+  border-radius: 10px;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* z-index: 2; */
+}
+
+.modalClose {
+  width: 100vw;
+  height: 100vh;
+}

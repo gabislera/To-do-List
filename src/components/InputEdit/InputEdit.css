@@ -1,0 +1,27 @@
+.editInput {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.formInput {
+  width: 540px;
+  height: 54px;
+  border-radius: 8px;
+  background: #262626;
+  border: none;
+  font-size: 16px;
+  color: #808080;
+  padding-left: 10px;
+}
+
+.formInput.edit {
+  width: 80%;
+  height: 30px;
+  border-radius: 8px 0 0 8px;
+}
+
+.editButton {
+  height: 32px;
+  border-radius: 0 8px 8px 0;
+}

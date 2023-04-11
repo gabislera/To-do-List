@@ -1,5 +1,6 @@
 import React from 'react'
-import Form from './Form'
+import Form from '../Form/Form'
+import './Modal.css'
 
 const Modal = ({ addTasks, showModal, onCloseModal, id }) => {
   if (!showModal) return <></>

@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
-import Task from './Task'
-import { checkedSort, sortPriority } from '../utils'
-import DaySelect from './DaySelect'
-import NoTasks from './NoTasks'
+import { useState } from 'react'
+import Task from '../Task/Task'
+import { checkedSort, sortPriority } from '../../utils'
+import DaySelect from '../DaySelect/DaySelect'
+import NoTasks from '../NoTasks/NoTasks'
+import './Tasks.css'
 
 const filterByDate = (task, dateCompare) => {
   const currentDate = new Date(task.date)

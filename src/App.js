@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import './components/reset.css'
-import Tasks from './components/Tasks'
-import Modal from './components/Modal';
-import Info from './components/Info';
-import NoTasks from './components/NoTasks';
+import Tasks from './components/Tasks/Tasks'
+import Modal from './components/Modal/Modal';
+import Info from './components/Info/Info';
+import NoTasks from './components/NoTasks/NoTasks';
 
 function App() {
   const [tasks, setTasks] = useState([])
